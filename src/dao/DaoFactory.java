@@ -10,13 +10,17 @@ public class DaoFactory {
 		return new MemberDaoImpl(getDataSource());
 	}
 	
+	public static AdminDao createAdminDao() {
+		return new AdminDaoImpl(getDataSource());
+	}
+	
 	public static DataSource getDataSource() {
 		InitialContext ctx = null;
 		DataSource ds = null;
 		
 		try {
 			ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:com/env/jdbc/mydb");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mydb");
 		} catch (NamingException e) {
 			if (ctx != null) {
 				try {

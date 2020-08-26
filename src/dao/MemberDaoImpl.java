@@ -46,10 +46,10 @@ public class MemberDaoImpl implements MemberDao {
 	public void insert(Member member) throws Exception {
 		// TODO Auto-generated method stub
 		try (Connection con = ds.getConnection()) {
-			String sql = "INSERT INTO members (name, age, address, type_id, created) VALUES (?, ?, ?, ?, NOW()";
+			String sql = "INSERT INTO members (name, age, address, type_id, created) VALUES (?, ?, ?, ?, NOW())";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, member.getName());
-			stmt.setObject(2, member.getAge());
+			stmt.setObject(2, member.getAge(), Types.INTEGER);
 			stmt.setString(3, member.getAddress());
 			stmt.setObject(4, member.getTypeId(), Types.INTEGER);
 			stmt.executeUpdate();
